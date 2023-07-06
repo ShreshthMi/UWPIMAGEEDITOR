@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Theme Resources -->
+
+    <!-- General Purpose -->
+    <SolidColorBrush x:Key="TenPercentDarkerBrush"
+                     Color="Black"
+                     Opacity=".1" />
+    <SolidColorBrush x:Key="TenPercentLighterBrush"
+                     Color="White"
+                     Opacity=".1" />
+    <SolidColorBrush x:Key="HighlightBrush"
+                     Color="OrangeRed" />
+
+    <!-- Specific -->
+    <!-- http://paletton.com/#uid=60A0K0kl6lRtdanpbg8h3rxcYzu -->
+
+    <!-- Header -->
+    <SolidColorBrush x:Key="TitlebarBackgroundBrush"
+                     Color="#341F66" />
+    <SolidColorBrush x:Key="TitlebarBackgroundDarkBrush"
+                     Color="#4C377F" />
+    <SolidColorBrush x:Key="TitlebarBackgroundLightBrush"
+                     Color="#705D9D" />
+    <SolidColorBrush x:Key="StatusbarBackgroundBrush"
+                     Color="#1E0C4A" />
+
+    <!-- Splitview Pane -->
+    <SolidColorBrush x:Key="SplitViewBackgroundBrush"
+                     Color="#4C377F" />
+    <SolidColorBrush x:Key="SplitViewForegroundBrush"
+                     Color="AliceBlue" />
+    <SolidColorBrush x:Key="HamburgerForegroundBrush"
+                     Color="AliceBlue" />
+
+    <!-- Splitview Content -->
+    <SolidColorBrush x:Key="PageBackgroundBrush"
+                     Color="#705D9D" />
+    <SolidColorBrush x:Key="PageForegroundBrush"
+                     Color="AliceBlue" />
+
+</ResourceDictionary>

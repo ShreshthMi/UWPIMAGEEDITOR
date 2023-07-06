@@ -1,0 +1,30 @@
+﻿<Page x:Class="XamlBrewer.Uwp.SplitViewNavigation.HorsePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamlBrewer.Uwp.SplitViewNavigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Transparent">
+        <TextBlock Text="Watermark"
+                   Foreground="{StaticResource PageForegroundBrush}"
+                   Margin="50,50,50,50"
+                   FontSize="48"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left" />
+
+        <Button Click="Watermark_OnClick" VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              Height="96"
+              Width="96"
+              Margin="50"
+                Background="Transparent">
+           <Path Data="{StaticResource WatermarkIcon}"
+              Fill="{StaticResource PageForegroundBrush}"
+              
+              Stretch="Uniform" />
+        </Button>
+        
+    </Grid>
+</Page>
