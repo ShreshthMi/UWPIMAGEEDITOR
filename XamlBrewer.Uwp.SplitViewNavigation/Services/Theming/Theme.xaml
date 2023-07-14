@@ -24,19 +24,22 @@
                      Color="#705D9D" />
     <SolidColorBrush x:Key="StatusbarBackgroundBrush"
                      Color="#1E0C4A" />
+    <SolidColorBrush x:Key="GridBackgroundBrush"
+                     Color="#6349A1" />
+    
 
     <!-- Splitview Pane -->
     <SolidColorBrush x:Key="SplitViewBackgroundBrush"
-                     Color="#4C377F" />
+                     Color="AliceBlue" />
     <SolidColorBrush x:Key="SplitViewForegroundBrush"
-                     Color="AliceBlue" />
+                     Color="#4C377F" />
     <SolidColorBrush x:Key="HamburgerForegroundBrush"
-                     Color="AliceBlue" />
+                     Color="#4C377F" />
 
     <!-- Splitview Content -->
     <SolidColorBrush x:Key="PageBackgroundBrush"
-                     Color="#705D9D" />
+                     Color="AliceBlue"/>
     <SolidColorBrush x:Key="PageForegroundBrush"
-                     Color="AliceBlue" />
+                     Color="#705D9D" />
 
 </ResourceDictionary>

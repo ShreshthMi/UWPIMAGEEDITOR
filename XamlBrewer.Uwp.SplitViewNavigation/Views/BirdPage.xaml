@@ -4,49 +4,128 @@
       xmlns:local="using:XamlBrewer.Uwp.SplitViewNavigation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"   
-      mc:Ignorable="d">   
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+      mc:Ignorable="d">
 
-    <Grid>
+    <Page.Resources>
+        <Style x:Name="Windows10" TargetType="controls:ImageCropper">
+            <!--<Setter Property="Background" Value="Red" />
+            -->
+            <!-- Set the desired background color -->
+            <!--
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:ImageCropper">
+                        <Grid x:Name="PART_LayoutRoot" Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Image x:Name="PART_SourceImage" Stretch="Uniform" />
+                            <Canvas x:Name="PART_ImageCanvas" Visibility="Collapsed">
+                                -->
+            <!-- Canvas content -->
+            <!--
+                            </Canvas>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+    </Page.Resources>
 
-        <Grid Margin="100" Background="{StaticResource PageBackgroundBrush}">
+    <Grid Background="{StaticResource PageBackgroundBrush}">
+
+        <Button x:Name="cropButtonMain" Click="Cropbutton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="96" Width="96" Background="Transparent">
+            <Path Data="{StaticResource CropIcon}" Fill="{StaticResource PageForegroundBrush}" Stretch="Uniform" />
+        </Button>
+
+        <Grid Margin="45 20 0 0"  >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-           
-            <controls:ImageCropper x:Name="cropArea" Visibility="Collapsed" CropShape="Rectangular" ThumbPlacement="All"  Background="{StaticResource PageBackgroundBrush}" Grid.Row="0" />
 
-            <Grid Margin="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1">
+            
+
+            <Grid x:Name="MainAreaGrid" Grid.Row="0" Background="{StaticResource PageBackgroundBrush}" Visibility="Collapsed">
+                <Grid Height="700" Width="700" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Viewbox Stretch="Uniform">
+                        <Image x:Name="MainImage"  Visibility="Collapsed"  Stretch="Uniform" />                        
+                    </Viewbox>
+                    <Grid x:Name="CropAreaGrid" Height="700" Width="700" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <controls:ImageCropper Style="{StaticResource Windows10}" x:Name="cropArea" Visibility="Collapsed" CropShape="Rectangular" ThumbPlacement="All" Background="{StaticResource PageBackgroundBrush}" >
+                            <controls:ImageCropper.Source>
+                        <Binding Path="Source" ElementName="MainImage" Mode="TwoWay" />
+                    </controls:ImageCropper.Source>
+                        </controls:ImageCropper>
+                    </Grid>                    
+                </Grid>
+                
+            </Grid>
+
+            <Grid Margin="10" Grid.Row="1">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
-                
+                <Grid x:Name="buttonbargrid" Grid.Row="0" Visibility="Collapsed" Background="{StaticResource TenPercentDarkerBrush}" BorderBrush="{StaticResource GridBackgroundBrush}" BorderThickness="2" CornerRadius="5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button x:Name="cropButtonMain" Click="Cropbutton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="96" Width="96" Grid.Row="0" Grid.Column="0" Background="Transparent">
-                    <Path Data="{StaticResource CropIcon}" Fill="{StaticResource PageForegroundBrush}" Stretch="Uniform" />
-                </Button>
+                    <Button  Click="RotateLeft"  Grid.Column="0" Background="Transparent" >
+                        <Path Data="{StaticResource RotateLeftIcon}" Fill="{StaticResource PageForegroundBrush}" Height="30" Width="30" VerticalAlignment="Center"
+                          HorizontalAlignment="Center" Stretch="Fill" />
+                    </Button>
+                    
+                    <Button  Click="RotateRight"  Grid.Column="1" Background="Transparent">
+                        <Path Data="{StaticResource RotateRightIcon}" Fill="{StaticResource PageForegroundBrush}" Height="30" Width="30"  VerticalAlignment="Center"
+                          HorizontalAlignment="Center"  Stretch="Fill"  />
+                    </Button>
 
-                <Button x:Name="aspectRatio" Click="aspectRatio_Click"  Visibility="Collapsed" Height="50" Width="50" Grid.Row="0" Grid.Column="0" Background="Transparent">
-                    <Path Data="{StaticResource HorseIcon }" Fill="{StaticResource PageForegroundBrush}" Stretch="Uniform" />
-                </Button>
+                    <Grid Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center" >
 
+                        <Button  Click="AspectRatio"   Background="Transparent">
+                            <Path Data="{StaticResource AspectRatioIcon}" Fill="{StaticResource PageForegroundBrush}" Height="30" Width="30" Stretch="Fill" />
+                        </Button>
 
-                <Button x:Name="cropButton" Click="Crop_Click" Margin="0 0 100 0" Visibility="Collapsed" Background="Transparent" Grid.Row="1" Grid.Column="0">
-                    <Path Data="{StaticResource ThumbsUpIcon}" Fill="{StaticResource PageForegroundBrush}" />
-                </Button>
+                    </Grid>
 
-                <Button x:Name="cancelButton" Click="CancelButton_Click" Margin="100 0 0 0" Visibility="Collapsed" Background="Transparent" Grid.Row="1" Grid.Column="1">
-                    <Path Data="{StaticResource ThumbsDownIcon}" Fill="{StaticResource PageForegroundBrush}" />
-                </Button>
+                    <Button  Click="MirrorClick"  Grid.Column="3" Background="Transparent"  >
+                        <Path Data="{StaticResource MirrorIcon}" Fill="{StaticResource PageForegroundBrush}" Height="30" Width="30"  VerticalAlignment="Center"
+                          HorizontalAlignment="Center"  Stretch="Fill" />
+                    </Button>
+
+                    <Button  Click="FlipClick"  Grid.Column="4" Background="Transparent" >
+                        <Path Data="{StaticResource FlipIcon}" Fill="{StaticResource PageForegroundBrush}" Height="30" Width="30" VerticalAlignment="Center"
+                          HorizontalAlignment="Center"  Stretch="Fill" />
+                    </Button>
+
+                </Grid>
+
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="cropButton" Click="Crop_ClickAsync" Margin="0 0 100 0" Visibility="Collapsed" Background="Transparent" Grid.Column="0">
+                        <Path Data="{StaticResource ConfirmIcon}" Fill="{StaticResource PageForegroundBrush}"  Height="40" Width="40" VerticalAlignment="Center"
+                          HorizontalAlignment="Center"  Stretch="Fill" />
+                    </Button>
+
+                    <Button x:Name="cancelButton" Click="CancelButton_Click" Margin="100 0 0 0" Visibility="Collapsed" Background="Transparent" Grid.Column="1">
+                        <Path Data="{StaticResource CancelIcon}" Fill="{StaticResource PageForegroundBrush}"  Height="40" Width="40" VerticalAlignment="Center"
+                          HorizontalAlignment="Center"  Stretch="Fill" />
+                    </Button>
+
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
